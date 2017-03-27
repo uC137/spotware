@@ -1,3 +1,7 @@
 <?php
 
-echo '<h1>Write your code here</h1>';
+$out = "Demo: <a href='/client'>Client</a> <br>";
+$out .= "<hr>";
+$out .= "Demo: <a href='/server'>Server</a> <br>";
+
+echo $out;
