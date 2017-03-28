@@ -15,7 +15,7 @@ class BXBookTransformer extends TransformerAbstract {
     public function transform(BX_Book $bx_book)
     {
         return [
-            'ISBN'                  => $bx_book->ISBN,
+            'ISBN'                  => (string)$bx_book->ISBN,
             'Book-Title'            => $bx_book->{'Book-Title'},
             'Book-Author'           => $bx_book->{'Book-Author'},
             'Year-Of-Publication'   => (int)$bx_book->{'Year-Of-Publication'},
