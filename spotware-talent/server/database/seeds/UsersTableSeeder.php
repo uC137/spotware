@@ -16,10 +16,10 @@ class UsersTableSeeder extends Seeder
         $user->name = 'Demo';
         $user->email = 'demo@example.com';
         $user->password = '12345';
-        $user->phone = '2342342342';
+        $user->phone = '234234';
         $user->bio = 'Something Something Info...';
         $user->image = 'http://placehold.it/32x32';
         $user->save();
-        factory(User::class, 30)->create();
+        factory(User::class, 5)->create();
     }
 }

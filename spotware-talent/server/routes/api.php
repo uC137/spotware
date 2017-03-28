@@ -6,6 +6,12 @@ $api = app('Dingo\Api\Routing\Router');
 //Endpoints
 $api->version('v1',['middleware' => ['cors','locale'],'namespace' => 'App\Http\Controllers'], function ($api) {
 
+    $api->get('/bx_users','BX_UsersController@index');
+    $api->get('/bx_users/{user_id}','BX_UsersController@show');
+    $api->get('/bx_books','BX_BooksController@index');
+    $api->get('/bx_books/{isbn}','BX_BooksController@show');
+
+
     $api->get('/locale/{lang}','LocaleController@index');
     $api->post('/auth','UserController@authenticate');
     $api->post('/register','UserController@register');

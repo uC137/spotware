@@ -19,7 +19,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => '12345',
-        'phone' => $faker->phoneNumber,
+        'phone' => $faker->numberBetween(100000,1000000),
         'bio' => $faker->paragraph,
         'image' => $faker->imageUrl(128, 128),
         'remember_token' => str_random(60),
@@ -29,8 +29,8 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Task::class, function (Faker\Generator $faker) {
     return [
         'title' => [
-            'en' => $faker->paragraph.  'English',
-            'ge' => $faker->paragraph.  'Georgian'
+            'en' => $faker->title.  'English',
+            'ge' => $faker->title.  'Georgian'
         ],
         'user_id' => 1,
         'completed' => random_int(0,1),
