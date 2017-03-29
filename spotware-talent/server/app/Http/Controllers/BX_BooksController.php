@@ -5,19 +5,21 @@ namespace App\Http\Controllers;
 use App\BX_Book;
 use App\Http\Requests\BooksRequest;
 use App\Transformers\BXBookTransformer;
+use Dingo\Api\Routing\Helpers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class BX_BooksController extends Controller
 {
 
+    use Helpers;
 
     /**
      * @return \Dingo\Api\Http\Response
      */
     public function index()
     {
-        $bx_books = BX_Book::paginate();
+        $bx_books = BX_Book::with(['users'])->orderBy('Year-Of-Publication','DESC')->paginate();
         return $this->response->paginator($bx_books, new BXBookTransformer());
     }
 
@@ -29,8 +31,8 @@ class BX_BooksController extends Controller
     public function show($isbn)
     {
         try{
-            $book = BX_Book::with(['users'])->where('BX-Books.ISBN',$isbn)->get();
-            return $this->response->item($book,new BXBookTransformer());
+            $book = BX_Book::where('ISBN',$isbn)->firstOrFail();
+            return $this->response->item($book,new BXBookTransformer(),['users',$book]);
         }catch (ModelNotFoundException $e){
             return $this->response->error('Model Not Found',500);
         }
@@ -74,6 +76,7 @@ class BX_BooksController extends Controller
      */
     public function update($isbn,Request $request)
     {
+        return $request->all();
         try{
             $book = BX_Book::where('BX-Books.ISBN',$isbn)->update($request->all());
             if($book){

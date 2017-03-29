@@ -1,9 +1,9 @@
 ## Api
-General purpose public API
+
 
 ## Demo
 ---- 
-- API http://api.expertj.com
+- API http://localhost:8000
 
 ## Documentation
 ----
@@ -15,6 +15,13 @@ api contains several packages:
 
 ## Usage 
 ---
+
+Start a server
+--
+`php artisan serve` ,  default port is 8000            
+now you will have following url: `http://localhost:8000/`
+
+
 To use api you need to have a user name to generate token.
 ---
 - First you must register a user. To register a user
@@ -54,10 +61,6 @@ To use api you need to have a user name to generate token.
   GET            | /api/user               |   User
   GET            | /api/token              |   User
   GET            | /api/users              |   User
-  GET            | /api/task               |   Admin
-  GET            | /api/task/{id}          |   Admin
-  POST           | /api/task/store         |   Admin
-  PUT            | /api/task/update/{id}   |   Admin
-  DELETE         | /api/task/delete/{id}   |   Admin
+  
 
 ---

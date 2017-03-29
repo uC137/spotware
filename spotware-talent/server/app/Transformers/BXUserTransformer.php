@@ -6,7 +6,8 @@ use League\Fractal\TransformerAbstract;
 
 class BXUserTransformer extends TransformerAbstract {
 
-    protected $defaultIncludes = ['book'];
+    //protected $defaultIncludes = ['book'];
+    protected $availableIncludes = ['book'];
 
 
     /**
@@ -17,8 +18,8 @@ class BXUserTransformer extends TransformerAbstract {
     {
         return [
             'User-ID'   => (int) $bx_user->{'User-ID'},
-            'Location'  => (string)$bx_user->Location,
-            'Age'       => (int)$bx_user->Age,
+            'Location'  => preg_split('/[\s*,\s*]*,+[\s*,\s*]*/', ucfirst(ucwords(trim($bx_user->Location)))),
+            'Age'       => (int)$bx_user->Age
         ];
 
 

@@ -15,14 +15,14 @@ class BXBookTransformer extends TransformerAbstract {
     public function transform(BX_Book $bx_book)
     {
         return [
-            'ISBN'                  => (string)$bx_book->ISBN,
-            'Book-Title'            => $bx_book->{'Book-Title'},
-            'Book-Author'           => $bx_book->{'Book-Author'},
-            'Year-Of-Publication'   => (int)$bx_book->{'Year-Of-Publication'},
-            'Publisher'             => $bx_book->Publisher,
-            'Image-URL-S'           => $bx_book->{'Image-URL-S'},
-            'Image-URL-M'           => $bx_book->{'Image-URL-M'},
-            'Image-URL-L'           => $bx_book->{'Image-URL-L'},
+            'ISBN'           => (string)$bx_book->ISBN,
+            'Title'          => $bx_book->{'Book-Title'},
+            'Author'         => $bx_book->{'Book-Author'},
+            'Year'           => (int)$bx_book->{'Year-Of-Publication'},
+            'Publisher'      => $bx_book->Publisher,
+            'ImgS'           => $bx_book->{'Image-URL-S'},
+            'ImgM'           => $bx_book->{'Image-URL-M'},
+            'ImgL'           => $bx_book->{'Image-URL-L'},
         ];
     }
 
@@ -34,7 +34,7 @@ class BXBookTransformer extends TransformerAbstract {
      */
     public function includeUsers(BX_Book $book)
     {
-        return $book->users() ? $this->collection($book->users(), new BXUserTransformer()) : null;
+        return $this->collection($book->users, new BXUserTransformer());
     }
 
 
