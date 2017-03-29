@@ -12,6 +12,8 @@ class BXBookTransformer extends TransformerAbstract {
     protected $defaultIncludes = ['users'];
     //protected $availableIncludes = ['user'];
 
+
+
     public function transform(BX_Book $bx_book)
     {
         return [
@@ -34,7 +36,8 @@ class BXBookTransformer extends TransformerAbstract {
      */
     public function includeUsers(BX_Book $book)
     {
-        return $this->collection($book->users, new BXUserTransformer());
+        $users = $book->users()->withPivot('Book-Rating')->get();
+        return $this->collection($users, new BXUserTransformer());
     }
 
 

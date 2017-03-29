@@ -19,7 +19,8 @@ class BXUserTransformer extends TransformerAbstract {
         return [
             'User-ID'   => (int) $bx_user->{'User-ID'},
             'Location'  => preg_split('/[\s*,\s*]*,+[\s*,\s*]*/', ucfirst(ucwords(trim($bx_user->Location)))),
-            'Age'       => (int)$bx_user->Age
+            'Age'       => (int)$bx_user->Age,
+            'Rating'    => isset($bx_user->pivot) ? $bx_user->pivot->{'Book-Rating'} : null,
         ];
 
 
