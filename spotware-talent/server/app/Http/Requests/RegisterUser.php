@@ -29,7 +29,7 @@ class RegisterUser extends FormRequest
             'password' => 'required',
             'phone' => 'digits_between:5,100',
             'bio' => 'max:255',
-            'image' => 'url',
+            //'image' => 'url',
         ];
     }
 }

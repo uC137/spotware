@@ -76,9 +76,18 @@ class BX_BooksController extends Controller
      */
     public function update($isbn,Request $request)
     {
-        return $request->all();
         try{
-            $book = BX_Book::where('BX-Books.ISBN',$isbn)->update($request->all());
+            $book = BX_Book::where('ISBN','=',$isbn)->firstorFail();
+            $book->update([
+                //'ISBN'                  => $request->get('ISBN'),
+                'Book-Title'            => $request->get('Title'),
+                'Book-Author'           => $request->get('Author'),
+                'Publisher'             => $request->get('Publisher'),
+                'Year-Of-Publication'   => $request->get('Year'),
+                'Image-URL-S'           => $request->get('ImgS'),
+                'Image-URL-M'           => $request->get('ImgM'),
+                'Image-URL-L'           => $request->get('ImgL'),
+            ]);
             if($book){
                 return $this->response->item($book,new BXBookTransformer());
             }else{

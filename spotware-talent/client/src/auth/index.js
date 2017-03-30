@@ -42,6 +42,9 @@ export default {
     },
 
     checkAuth() {
+
+        this.checkExpiredToken()
+
         var jwt = localStorage.getItem('token')
         if (jwt) {
             return this.user.authenticated = true
@@ -55,5 +58,11 @@ export default {
         return {
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         }
-    }
+    },
+
+    checkExpiredToken() {
+        //TODO::need to implement this
+    },
+
+
 }

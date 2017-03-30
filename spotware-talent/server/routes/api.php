@@ -7,7 +7,7 @@ $api = app('Dingo\Api\Routing\Router');
 $api->version('v1',['middleware' => ['cors','locale'],'namespace' => 'App\Http\Controllers'], function ($api) {
 
     //Publicly available methods
-    $api->get('/locale/{lang}','LocaleController@index');
+    //$api->get('/locale/{lang}','LocaleController@index');
     $api->post('/auth','UserController@authenticate');
     $api->post('/register','UserController@register');
 
@@ -21,23 +21,16 @@ $api->version('v1',['middleware' => ['cors','locale'],'namespace' => 'App\Http\C
 
     //Authenticated endpoints
     $api->group(['middleware' => 'api.auth'], function ($api) {
+        $api->get('/user','UserController@user');
         $api->get('/token','UserController@token');
+        $api->get('/role','UserController@userRole');
 
         $api->post('/bx_books/store','BX_BooksController@store');
         $api->put('/bx_books/update/{isbn}','BX_BooksController@update');
 
         //Admin User Endpoints
-        $api->group(['middleware' => 'role:admin'], function ($api) {
-
-
+        $api->group(['middleware' => 'role:owner'], function ($api) {
             $api->delete('/bx_books/delete/{isbn}','BX_BooksController@destroy');
-
-            $api->get('/users','UserController@all');
-            $api->get('/task','TaskController@index');
-            $api->get('/task/{id}','TaskController@show');
-            $api->post('/task/store','TaskController@store');
-            $api->put('/task/update/{id}','TaskController@update');
-            $api->delete('/task/delete/{id}','TaskController@destroy');
         });
     });
 

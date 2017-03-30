@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Events\UserRegisterd;
 use App\Http\Requests\RegisterUser;
+use App\Role;
 use App\Transformers\UserTransformer;
 use App\User;
 use Dingo\Api\Contract\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Haxsh;
 use Psy\Exception\ErrorException;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
-use Tymon\JWTAuth\Facades\JWTFactory;
 
 class UserController extends Controller
 {
@@ -24,6 +24,11 @@ class UserController extends Controller
     public function user()
     {
         return JWTAuth::parseToken()->toUser();
+    }
+
+    public function userRole()
+    {
+        return Role::find($this->user()->id);
     }
 
     /**
