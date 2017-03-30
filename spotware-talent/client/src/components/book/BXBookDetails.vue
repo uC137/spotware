@@ -13,7 +13,11 @@
                             <span>Author: <strong>{{book.Author}}</strong></span>
                             <!--<div v-for="user in book.users.data">
                                 <blockquote>
-                                    <span>User Location:</span><span v-for="location in user.Location" class="tag is-light">{{location}}</span><br>
+                                    <span>User Location:</span>
+                                        <span v-for="location in user.Location" >
+                                            <span>{{location}}</span>
+                                        </span>
+                                    <br>
                                     <span>User Age:</span> <strong>{{user.Age}}</strong>
                                 </blockquote>
                             </div>-->
@@ -25,8 +29,8 @@
                 </div>
             </div>
             <footer class="card-footer">
-                <el-button v-if="role === 'owner' || role === 'admin'" class="card-footer-item" type="text" @click="dialogVisible = true">Edit</el-button>
-                <el-button v-if="role === 'owner'" class="card-footer-item" type="text" @click="deleteBook()">Delete</el-button>
+                <el-button v-if="role === 'owner' || role === 'admin'" class="card-footer-item" type="text" icon="edit" @click="dialogVisible = true">Edit</el-button>
+                <el-button v-if="role === 'owner'" class="card-footer-item" type="text" icon="delete"  @click="deleteBook()">Delete</el-button>
             </footer>
 
 
@@ -78,9 +82,9 @@
         name: 'books',
         data () {
             return {
-                book: [],
-                form: [],
-                role: '',
+                book: {},
+                form: {},
+                role: 'admin',
                 dialogVisible: false,
                 loadingButton: false,
                 formLabelWidth: '120px'

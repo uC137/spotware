@@ -16,6 +16,8 @@ class BooksRequest extends FormRequest
         return true;
     }
 
+
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -23,15 +25,15 @@ class BooksRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'ISBN'                  => 'required|alpha_num',
-            'Book-Title'            => 'required|alpha_num',
-            'Book-Author'           => 'required|alpha_num',
-            'Year-Of-Publication'   => 'required|numeric',
-            'Publisher'             => 'required',
-            'Image-URL-S'           => 'required',
-            'Image-URL-M'           => 'required',
-            'Image-URL-L'           => 'required',
+        return  [
+            'ISBN'      => 'required',
+            'Title'     => 'required|alpha_num',
+            'Author'    => 'required|alpha_num',
+            'Year'      => 'required|numeric',
+            'Publisher' => 'required',
+            'ImgS'      => 'required',
+            'ImgM'      => 'required',
+            'ImgL'      => 'required',
         ];
     }
 }

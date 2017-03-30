@@ -47,19 +47,19 @@ class BX_BooksController extends Controller
     {
         try{
             $isbn = $request->input('ISBN');
-            $exists = DB::table('BX-Books')->select('BX-Books.ISBN')->where('BX-Books.ISBN','=',$isbn)->count();
+            $exists = DB::table('BX-Books')->select('ISBN')->where('ISBN','=',$isbn)->count();
             if(!!$exists){
                 return $this->response->error('Duplicate Record',401 );
             }
             $book = new BX_Book();
             $book->{'ISBN'} = $request->get('ISBN');
-            $book->{'Book-Title'} = $request->get('Book-Title');
-            $book->{'Book-Author'} = $request->get('Book-Author');
+            $book->{'Book-Title'} = $request->get('Title');
+            $book->{'Book-Author'} = $request->get('Author');
             $book->{'Publisher'} = $request->get('Publisher');
-            $book->{'Year-Of-Publication'} = $request->get('Year-Of-Publication');
-            $book->{'Image-URL-S'} = $request->get('Image-URL-S');
-            $book->{'Image-URL-M'} = $request->get('Image-URL-M');
-            $book->{'Image-URL-L'} = $request->get('Image-URL-L');
+            $book->{'Year-Of-Publication'} = $request->get('Year');
+            $book->{'Image-URL-S'} = $request->get('ImgS');
+            $book->{'Image-URL-M'} = $request->get('ImgM');
+            $book->{'Image-URL-L'} = $request->get('ImgL');
             $book->save();
 
             return $this->response->item($book,new BXBookTransformer());
@@ -79,7 +79,7 @@ class BX_BooksController extends Controller
         try{
             $book = BX_Book::where('ISBN','=',$isbn)->firstorFail();
             $book->update([
-                //'ISBN'                  => $request->get('ISBN'),
+                'ISBN'                  => $request->get('ISBN'),
                 'Book-Title'            => $request->get('Title'),
                 'Book-Author'           => $request->get('Author'),
                 'Publisher'             => $request->get('Publisher'),
