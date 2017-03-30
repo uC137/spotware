@@ -46,6 +46,7 @@
         <hr>
 
         <el-pagination class="pagination is-centered" small
+                       v-loading.fullscreen.lock="loading"
                        :current-page="pagination.current_page"
                        :page-size="pagination.per_page"
                        :total="pagination.total"
@@ -61,7 +62,8 @@
         data () {
             return {
                 books: [],
-                pagination:{}
+                pagination:{},
+                loading:false
             }
         },
         mounted(){
@@ -73,7 +75,6 @@
                 let userData = book.users.data,location = [];
 
                 for (var i = 0; i < userData.length; i++) {
-                    console.log(userData[i].Location);
                     location.push(userData[i].Location)
                 }
 
@@ -116,6 +117,7 @@
             },
 
             getBooks(page) {
+                this.loading = true;
                 let url = this.$conf.API_URL + 'bx_books';
                 if(page){
                     url = url + '?page=' + page;
@@ -124,6 +126,7 @@
                     .then(res => {
                         this.books = res.data.data
                         this.pagination = res.data.meta.pagination
+                        this.loading = false;
                         //console.log(res.data.meta.pagination);
                     })
                     .catch(res => console.log(res))
