@@ -57,8 +57,6 @@ class BXBooks extends TestCase
     }
 
 
-
-
     /**
      * @test
      * Test All returned books and json structure
@@ -74,17 +72,6 @@ class BXBooks extends TestCase
             ->assertStatus(200)
             ->assertJsonStructure($this->jsonStructureAll);
 
-    }
-
-    /**
-     * @test
-     * Test individual book and it's json structure
-     */
-    public function return_book_by_isbn()
-    {
-        $this->get('/api/bx_books/1857022424')
-            ->assertStatus(200)
-            ->assertJsonStructure($this->jsonStructureAll['data']);
     }
 
 
@@ -105,13 +92,56 @@ class BXBooks extends TestCase
 
     /**
      * @test
-     * Test book update with JWT authorization headers
+     * Test book add with JWT authorization headers
      */
-    public function book_update()
+    public function test_book_add()
     {
         $headers = $this->headers();
 
-        $this->put('/api/bx_books/update/1857022424',[
+        $book = [
+            'ISBN' => '111222333',
+            'Title' => 'Test Case Run at: ' . date('Y/m/d H:i:s'),
+            'Author' => 'Test Case',
+            'Year' => date('Y'),
+            'Publisher' => 'Spotware',
+            'ImgS' => 'https://placehold.it/200x300',
+            'ImgM' => 'https://placehold.it/200x300',
+            'ImgL' => 'https://placehold.it/200x300',
+        ];
+        $this->post('/api/bx_books/store/', $book, $headers)
+            ->assertJsonStructure($this->jsonStructureAll['data']);
+
+
+        //Check for duplicate books
+        $this->post('/api/bx_books/store/', $book, $headers)
+            ->assertStatus(401)
+            ->assertJson([
+                "message" => "Duplicate Record",
+                "status_code" => 401,
+            ]);
+    }
+
+    /**
+     * @test
+     * Test individual book and it's json structure
+     */
+    public function return_book_by_isbn()
+    {
+        $this->get('/api/bx_books/111222333')
+            ->assertStatus(200)
+            ->assertJsonStructure($this->jsonStructureAll['data']);
+    }
+
+
+    /**
+     * @test
+     * Test book update with JWT authorization headers
+     */
+    public function test_book_update()
+    {
+        $headers = $this->headers();
+
+        $this->put('/api/bx_books/update/111222333',[
             'Title' => 'Test Case Run at: ' . date('Y/m/d H:i:s'),
             'Author' => 'Test Case',
             'Year' => date('Y'),
@@ -121,5 +151,18 @@ class BXBooks extends TestCase
             'ImgL' => 'https://placehold.it/200x400',
         ],$headers);
     }
+
+    /**
+     * @test
+     * Test book delete with JWT authorization headers
+     */
+    public function test_book_delete()
+    {
+        $headers = $this->headers();
+
+        $this->delete('/api/bx_books/delete/111222333',[],$headers)
+            ->assertSee('["Record ISBN: 111222333 was deleted"]');
+    }
+
 
 }
