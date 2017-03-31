@@ -8,36 +8,35 @@
                 <span slot="footer" class="dialog-footer">
 
                     <el-form :model="form" @submit.prevent="validateBeforeSubmit">
-                        <el-alert v-if="err" title="error alert" type="error"></el-alert><br>
 
-                        <el-button type="primary" :loading="loadingButton" @click="addBook()">Confirm</el-button>
 
                         <el-form-item label="ISBN" label-width="formLabelWidth">
-                            <el-input v-validate:name="'required'" v-model="form.ISBN" name="ISBN" auto-complete="off"></el-input>
+                            <el-input name="ISBN" v-validate:name="'required'" v-model="form.ISBN"  auto-complete="off"></el-input>
                         </el-form-item>
                         <el-form-item label="Title" label-width="formLabelWidth">
-                            <el-input v-validate:name="'required'" v-model="form.Title" name="Title" auto-complete="off"></el-input>
+                            <el-input name="Title" v-validate:name="'required'" v-model="form.Title" auto-complete="off"></el-input>
                         </el-form-item>
                         <el-form-item label="Author" label-width="formLabelWidth">
-                            <el-input v-validate="'required'" v-model="form.Author" auto-complete="off"></el-input>
+                            <el-input name="Author" v-validate="'required'" v-model="form.Author" auto-complete="off"></el-input>
                         </el-form-item>
                         <el-form-item label="Publisher" label-width="formLabelWidth">
-                            <el-input v-validate="'required'" v-model="form.Publisher" auto-complete="off"></el-input>
+                            <el-input name="Publisher" v-validate="'required'" v-model="form.Publisher" auto-complete="off"></el-input>
                         </el-form-item>
                         <el-form-item label="Year" label-width="formLabelWidth">
-                            <el-input v-validate="'required'" v-model="form.Year" auto-complete="off"></el-input>
+                            <el-input name="Year" v-validate="'required'" v-model="form.Year" auto-complete="off"></el-input>
                         </el-form-item>
                         <el-form-item label="Imgage Small" label-width="formLabelWidth">
-                            <el-input v-validate="'required'" v-model="form.ImgS" auto-complete="off"></el-input>
+                            <el-input name="ImgS" v-validate="'required'" v-model="form.ImgS" auto-complete="off"></el-input>
                         </el-form-item>
                         <el-form-item label="Imgage Medium" label-width="formLabelWidth">
-                            <el-input v-validate="'required'" v-model="form.ImgM" auto-complete="off"></el-input>
+                            <el-input name="ImgM" v-validate="'required'" v-model="form.ImgM" auto-complete="off"></el-input>
                         </el-form-item>
                         <el-form-item label="Imgage Large" label-width="formLabelWidth">
-                            <el-input v-validate="'required'" v-model="form.ImgL" auto-complete="off"></el-input>
+                            <el-input name="ImgL" v-validate="'required'" v-model="form.ImgL" auto-complete="off"></el-input>
                         </el-form-item>
                     </el-form>
 
+                    <el-button type="primary" :loading="loadingButton" @click="addBook()">Confirm</el-button>
                     <el-button @click="dialogVisible = false">Cancel</el-button>
 
                 </span>
