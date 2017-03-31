@@ -97,6 +97,7 @@
                     .then(res => {
                         this.dialogVisible = false;
                         this.loadingButton = false;
+                        window.location = '/';
                     })
                     .catch(res => {
                         this.err = res
