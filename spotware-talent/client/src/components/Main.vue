@@ -8,11 +8,9 @@
                 <span slot="footer" class="dialog-footer">
 
                     <el-form :model="form" @submit.prevent="validateBeforeSubmit">
-                        <div>
-                            Errors: {{err}}
-                        </div>
+                        <el-alert v-if="err" title="error alert" type="error"></el-alert><br>
 
-                    <el-button type="primary" :loading="loadingButton" @click="addBook()">Confirm</el-button>
+                        <el-button type="primary" :loading="loadingButton" @click="addBook()">Confirm</el-button>
 
                         <el-form-item label="ISBN" label-width="formLabelWidth">
                             <el-input v-validate:name="'required'" v-model="form.ISBN" name="ISBN" auto-complete="off"></el-input>
