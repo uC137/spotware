@@ -26,14 +26,14 @@ class BooksRequest extends FormRequest
     public function rules()
     {
         return  [
-            'ISBN'      => 'required',
-            'Title'     => 'required|alpha_num',
-            'Author'    => 'required|alpha_num',
-            'Year'      => 'required|numeric',
+            'ISBN' => 'required',
+            'Title' => 'required',
+            'Author' => 'required',
+            'Year' => 'required',
             'Publisher' => 'required',
-            'ImgS'      => 'required',
-            'ImgM'      => 'required',
-            'ImgL'      => 'required',
+            'ImgS' => 'required',
+            'ImgM' => 'required',
+            'ImgL' => 'required',
         ];
     }
 }
