@@ -37,7 +37,7 @@ After these steps configure your .env file.
 To use api you need to have a user name to generate token.
 ---
 
-Demo user name is :
+Demo user name is which has ADMIN and OWNER role:
 
 ```json
     {
