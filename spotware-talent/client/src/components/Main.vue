@@ -84,7 +84,11 @@
                 auth.logout()
             },
             userRole(){
+
                 let url = this.$conf.API_URL + 'role';
+                if(!auth.checkAuth()){
+                    return;
+                }
                 this.$http.get(url)
                     .then(res => {
                         this.role = res.data.role.name;
