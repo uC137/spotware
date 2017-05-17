@@ -12,7 +12,7 @@
 
         <div class="footer">
             <div class="notification">
-                This container is a demo application for <strong>Spotware</strong>. <br>
+                This container is a demo application. <br>
 
                 <p>
                     Developed at: <small>{{datetime}}</small>
