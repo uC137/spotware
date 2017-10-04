@@ -5,7 +5,7 @@ export default {
     init(){
         return {
 
-            API_URL: 'http://api.expertj.com/api/'
+            API_URL: 'http://server.expertj.com/api/'
 
         }
     }
