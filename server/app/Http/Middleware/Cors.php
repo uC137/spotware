@@ -19,7 +19,7 @@ class Cors {
 			// e.g. ->header('Access-Control-Allow-Origin', 'http://localhost:8080')
 //			->header( 'Access-Control-Allow-Origin', 'http://client.expertj.com/' )
 			->header( 'Access-Control-Allow-Origin', '*' )
-			->header( 'Access-Control-Allow-Headers', 'X-PINGOTHER, Content-Type, Authorization, Content-Length, X-Requested-With' )
+			->header( 'Access-Control-Allow-Headers', '*' )
 			->header( 'Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS' );
 	}
 }

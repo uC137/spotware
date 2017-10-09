@@ -36,7 +36,9 @@ Vue.use(VeeValidate, validationConfig);
 Vue.use(ElementUI)
 Vue.use(VueCookie);
 Vue.prototype.$http = Axios
-
+//Enable CORS in axios
+Axios.defaults.headers.common.crossDomain = true;
+Axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
 
 router.beforeEach((to, from, next) => {
