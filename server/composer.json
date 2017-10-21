@@ -9,7 +9,7 @@
         "laravel/framework": "5.4.*",
         "dingo/api": "1.0.x@dev",
         "tymon/jwt-auth": "^0.5.9",
-        "barryvdh/laravel-cors": "^0.9.3",
+        "barryvdh/laravel-cors": "^0.10.0",
         "laravel/tinker": "~1.0",
         "zizaco/entrust": "5.2.x-dev",
         "spatie/laravel-translatable": "^1.2"
