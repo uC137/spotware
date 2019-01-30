@@ -4,7 +4,5 @@ Front is using VueJS,and back is using Laravel.You can see this [API](https://gi
 
 ## For usage see README inside
 --- 
-[Demo Page](http://client.expertj.com/)
-
 email: demo@example.com                                    
 password: 12345               
